@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Administrator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+
+</head>
+
+
+
+
+<body>
+
+
+    <div class="container">
+        <div id="userStatus" class="user-status">
+          <h2 id="userStatusDiv"></h2>
+            <a href="dashboard.html" class="dashboard-btn" style="display: none;">Dashboard</a>
+        </div>
+        <div class="wrapper">
+            <div class="form-box login">
+                <h2>Login</h2>
+                <div id="errorMessage" class="alert alert-warning" role="alert" style="display: none;">
+                    Please enter both username and password.
+                </div>
+
+                <div id="invalidMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    Email address and password do not match.
+                </div>
+
+                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                    Login successful!
+                </div>
+                <form id="loginForm" method="post" action="" novalidate>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </span>
+                        <input type="text" name="username" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" id="registerBtn" class="btn">Login</button>
+                </form>
+            </div>
+            <a href="#" class="dashboard-btn" style="display: none;">Dashboard</a>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="loginscript.js"></script>
+    <script src="session.js"></script>
+    <script src="Dashboardscript.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles for the form grid */
+form {
+    display: grid;
+    grid-gap: 10px;
+}
+
+/* Responsive styles for input fields and labels */
+label,
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive styles for the file input label */
+label[for="productImage"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Responsive styles for the button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Media query for screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    /* Adjust the max-width and other styles for smaller screens */
+    .container {
+        max-width: 400px;
+        padding: 10px;
+    }
+}
+
+/* Media query for screens smaller than 400px */
+@media screen and (max-width: 400px) {
+    /* Adjust the max-width and other styles for even smaller screens */
+    .container {
+        max-width: 300px;
+        padding: 5px;
+    }
+    /* Adjust the width and padding for input fields and labels */
+    label,
+    input,
+    textarea {
+        width: 100%;
+        padding: 5px;
+    }
+}

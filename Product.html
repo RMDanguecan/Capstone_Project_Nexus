@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">Admin</span>
+        </a>
+        <ul class="side-menu top">
+            <li>
+                <a href="dashboard.html">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="Product.html">
+                    <i class='bx bx-box'></i>
+                    <span class="text">Products</span>
+                </a>
+            </li>
+            <li>
+                <a href="ui.html">
+                    <i class='bx bxs-doughnut-chart'></i>
+                    <span class="text">Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">Message</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Team</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="settings">
+                    <i class='bx bxs-cog'></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="logout" onclick="logoutHandler(event)">
+                    <i class='bx bxs-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+			<i class='bx bx-menu'></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+		
+			<a href="#" class="notification">
+				<i class='bx bxs-bell'></i>
+				<span class="num">8</span>
+			</a>
+			<div class="profile-link">
+				<a href="#" class="profile">
+					<img src="./img/people.png">
+					<div class="dropdown">
+						<ul>
+							<li><a href="#" class="settings">Edit Profile</a></li>
+							<li><a href="#" class="update">Settings</a></li>
+                            <li><a href="#" class="logout">Logout</a></li>
+						</ul>
+					</div>
+				</a>
+			</div>
+		</nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Products</h1>
+                </div>
+            </div>
+
+            <ul class="box-info">
+                <li>
+                    <a href="#" id="addProductBtn"><i class='bx bxs-folder-plus'></i></a>
+                    <span class="text">
+                        <h3>Add Product</h3>
+                    </span>
+
+                </li>
+
+                
+              
+
+
+
+
+                    <div id="addProductForm" class="popup-form">    
+                        <span class="close" id="closeForm">&times;</span> 
+                        <form id="productForm" action="add.php" method="POST" enctype="multipart/form-data">
+                            <div class="form-table">
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <label for="productName">Product Name:</label>
+                                        <input type="text" class="form-control" id="productName" name="productName" required>
+                                    </div>
+                                    <div class="form-column">
+                                        <label for="category">Category:</label>
+                                        <input type="text" class="form-control" id="category" name="category" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <label for="price">Price:</label>
+                                        <input type="text" id="price" name="price" placeholder="&#8369;0.00" required>
+                                        
+                                    </div>
+                                    <div class="form-column">
+                                        <label for="author">Artist:</label>
+                                        <input type="text" class="form-control" id="author" name="author" required>
+                                        <input type="hidden" id="id" name="id" value="">
+
+                                    </div>
+                                </div>
+                                <input type="file" id="productImage" name="productImage" accept="image/*" style="display: none;">
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="form-row">
+                                            <div class="column">
+                                                <div id="selectedImageContainer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" id="addImageBtn" class="btn btn-primary">Add Image</button>
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" value="Add Product" class="btn btn-primary" name="add">
+                            </div>
+                        </form>
+                    </div>
+            </ul>
+
+
+
+
+
+            <div id="imageModal" class="modal">
+                <span class="close" id="closeImageModal">&times;</span> 
+                <div class="modal-content" id="enlargedImageContainer">
+                    <img class="modal-image" id="enlargedImage">
+                    <span class="enlarged-close-button" id="closeEnlargedImage">&times;</span>
+                </div>
+            </div>
+
+
+
+        </main>
+        <div id="productTableContainer">
+            <table id="productTable" class="display" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Product Image</th>
+                        <th>Actions</th> 
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+        </div>
+
+    </section>
+    <!-- CONTENT -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="Dashboardscript.js"></script>
+    <script src="addproduct.js"></script>
+</body>
+
+</html>
