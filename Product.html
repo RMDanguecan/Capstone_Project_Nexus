@@ -8,7 +8,7 @@
     
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
 
     <title>Dashboard</title>
 </head>
@@ -36,9 +36,9 @@
                 </a>
             </li>
             <li>
-                <a href="ui.html">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Analytics</span>
+                <a href="Users.html">
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">Users</span>
                 </a>
             </li>
             <li>
@@ -130,7 +130,7 @@
 
                     <div id="addProductForm" class="popup-form">    
                         <span class="close" id="closeForm">&times;</span> 
-                        <form id="productForm" action="add.php" method="POST" enctype="multipart/form-data">
+                        <form id="productForm" action="./API/add.php" method="POST" enctype="multipart/form-data">
                             <div class="form-table">
                                 <div class="form-row">
                                     <div class="form-column">
@@ -214,8 +214,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="Dashboardscript.js"></script>
-    <script src="addproduct.js"></script>
+    <script src="./JS/Dashboardscript.js"></script>
+    <script src="./JS/addproduct.js"></script>
 </body>
 
 </html>

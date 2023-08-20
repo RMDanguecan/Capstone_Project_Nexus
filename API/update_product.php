@@ -1,12 +1,14 @@
 <?php
 
-require "./API/conn.php";
+require "conn.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
 $response = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
- 
+   
     $productId = isset($_POST["id"]) ? $_POST["id"] : null;
     $productName = $_POST["productName"];
     $category = $_POST["category"];
@@ -14,17 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $author = $_POST["author"];
 
   
+    $productImage = null;
     if (isset($_FILES["productImage"]) && $_FILES["productImage"]["error"] === UPLOAD_ERR_OK) {
-     
+        $uploadsDirectory = 'uploads/';
+    if (!file_exists($uploadsDirectory)) {
+        mkdir($uploadsDirectory, 0777, true);
+    }
+        
+        
         $tempFile = $_FILES["productImage"]["tmp_name"];
 
        
         $targetDirectory = "uploads/";
 
-       
+        
         $targetFile = $targetDirectory . uniqid() . "_" . $_FILES["productImage"]["name"];
 
-      
+       
         if (move_uploaded_file($tempFile, $targetFile)) {
            
             $productImage = $targetFile;
@@ -37,53 +45,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode($response);
             exit();
         }
-    } else {
-       
-        $productImage = null;
     }
 
+  
     if ($productId !== null) {
        
-        $updateQuery = "UPDATE products SET productName = ?, category = ?, price = ?, author = ?";
-        $params = array($productName, $category, $price, $author);
-    
-       
         if ($productImage !== null) {
-            $updateQuery .= ", productImage = ?";
-            $params[] = $productImage;
-        }
-    
-      
-        $updateQuery .= " WHERE id = ?";
-        $params[] = $productId;
-    
-       
-        $stmt = $conn->prepare($updateQuery);
-        if ($stmt->execute($params)) {
-           
-            $response['success'] = true;
-            $response['message'] = "Product updated successfully!";
+            $updateQuery = "UPDATE products SET productName = ?, category = ?, price = ?, author = ?, productImage = ? WHERE id = ?";
+            $stmt = $conn->prepare($updateQuery);
+            $stmt->bind_param("ssdsis", $productName, $category, $price, $author, $productImage, $productId);
         } else {
-           
-            $response['success'] = false;
-            $response['message'] = "Product update failed. Please try again.";
+            $updateQuery = "UPDATE products SET productName = ?, category = ?, price = ?, author = ? WHERE id = ?";
+            $stmt = $conn->prepare($updateQuery);
+            $stmt->bind_param("ssdsi", $productName, $category, $price, $author, $productId);
         }
     } else {
-       
+      
         $insertQuery = "INSERT INTO products (productName, category, price, author, productImage) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
         $stmt->bind_param("ssdss", $productName, $category, $price, $author, $productImage);
-    
-        if ($stmt->execute()) {
-           
-            $response['success'] = true;
-            $response['message'] = "Product inserted successfully!";
-        } else {
-         
-            $response['success'] = false;
-            $response['message'] = "Product insertion failed. Please try again.";
-        }
     }
+
+    if ($stmt->execute()) {
+       
+        $response['success'] = true;
+        $response['message'] = $productId !== null ? "Product updated successfully!" : "Product inserted successfully!";
+    } else {
+      
+        $response['success'] = false;
+        $response['message'] = $productId !== null ? "Product update failed. Please try again." : "Product insertion failed. Please try again.";
+    }
+} else {
+   
+    $response['success'] = false;
+    $response['message'] = "Invalid request!";
 }
 
 
