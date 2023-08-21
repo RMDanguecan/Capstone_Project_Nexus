@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
     $response = ['User Not Found' => false];
     header('Content-Type: application/json');
     echo json_encode($response);
-}
+}   
 
 
 mysqli_close($conn);

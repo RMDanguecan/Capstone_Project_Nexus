@@ -449,3 +449,10 @@ async function deleteProduct(productId) {
         return null;
     }
 }
+
+
+
+
+
+
+

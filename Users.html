@@ -3,16 +3,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="./CSS/style.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./CSS/style.css">
+	<link rel="stylesheet" href="./CSS/Userform.css">
 
 	<title>AdminHub</title>
+	
 </head>
+
+
 <body>
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -110,30 +111,81 @@
 			</div>
 			<ul class="box-info">
                 <li>
-                    <a href="#" id="addProductBtn"><i class='bx bxs-folder-plus'></i></a>
+                    <a href="#" id="addUserBtn"><i class='bx bx-user-plus'></i></a>
                     <span class="text">
                         <h3>Add User</h3>
                     </span>
 
+					<div id="addUserFormPopup" class="popup-form" style="display: none;">
+						<span class="closeUser" id="closeUserForm">&times;</span>
+						<form id="userForm" action="./API/adduser.php" method="POST" enctype="multipart/form-data">
+							<div class="form-table">
+								<div class="form-row">
+									<div class="form-column">
+										<label for="userName">Username:</label>
+										<input type="text" class="form-control" id="userName" name="userName" required>
+									</div>
+									<div class="form-column">
+										<label for="category">Email:</label>
+										<input type="text" class="form-control" id="email" name="email" required>
+					
+					
+									</div>
+									<div class="form-column">
+										<label for="newPassword">Password:</label>
+										<input type="password" class="form-control" id="newPassword" name="newPassword" required>
+									</div>
+									<div class="form-column">
+										<label for="confirmPassword">Confirm Password:</label>
+										<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+									</div>
+									<div class="form-actions">
+										<input type="submit" value="Add User" class="btn btn-primary" name="add">
+									</div>
+						</form>
+					</div>
                 </li>
 
-
-
-
-
-
-
-				</ul>
+				<li>
+					<a href="#" id="addAdminBtn"><i class='bx bx-user-plus'></i></a>
+					<span class="text">
+						<h3>Add Admin</h3>
+						
+					</span>
+				</li>
 
 				
+				</ul>
+	
 		</main>
+
+		<div id="usersTableContainer">
+            <table id="userstable" class="display" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+						<th>Actions</th> 
+                        
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+        </div>
 		<!-- MAIN -->
 
 		
 	</section>
 	<!-- CONTENT -->
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="./JS/Dashboardscript.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="./JS/Dashboardscript.js"></script>
+    <script src="./JS/addproduct.js"></script>
+	<script src="./JS/user.js"></script>
 </body>
 </html>	

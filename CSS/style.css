@@ -897,6 +897,17 @@ table.dataTable {
 	width: 100%;
 	max-width: 400px; /* Adjust the max-width as needed */
   }
+
+
+
+  #userstable_wrapper {
+	overflow-x: auto; 
+	padding: 20px;
+	
+  }
+
+ 
+
   
   /* Styles for the popup header */
  

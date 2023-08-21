@@ -1,0 +1,63 @@
+.popup-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+    max-width: 440px;
+    height: 560px;
+}
+
+/* Styling for form rows and columns */
+.form-row {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Styling for form inputs */
+.form-control {
+    width: 220px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Styling for buttons */
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styling for close button */
+.closeUser {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closeUser:hover {
+    color: red;
+}
+
+
+.popup-form input[type="text"],
+.popup-form input[type="number"],
+.popup-form input[type="file"] {
+    width: 220px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

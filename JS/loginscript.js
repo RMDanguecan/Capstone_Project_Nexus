@@ -23,27 +23,7 @@ function closeAlert(alertId) {
 }
 
 
-registerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(registerForm);
 
-    fetch('register.php', {
-        method: 'POST',
-        body: formData,
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                alert('Registration successful!');
-                registerPopup.style.display = 'none';
-            } else {
-                alert('Registration failed. Please try again.');
-            }
-        })
-        .catch((error) => {
-            alert('An error occurred during registration. Please try again.');
-        });
-});
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -92,4 +72,27 @@ loginForm.addEventListener('submit', (e) => {
         closeAlert('invalidMessage');
         closeAlert('successMessage');
     }, 1000);
+});
+
+
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(registerForm);
+
+    fetch('./API/register.php', {
+        method: 'POST',
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert('Registration successful!');
+                registerPopup.style.display = 'none';
+            } else {
+                alert('Registration failed. Please try again.');
+            }
+        })
+        .catch((error) => {
+            alert('An error occurred during registration. Please try again.');
+        });
 });
