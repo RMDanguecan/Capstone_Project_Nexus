@@ -895,7 +895,7 @@ table.dataTable {
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	width: 100%;
-	max-width: 400px; /* Adjust the max-width as needed */
+	max-width: 400px; 
   }
 
 
@@ -909,7 +909,7 @@ table.dataTable {
  
 
   
-  /* Styles for the popup header */
+  
  
   
   .popup {
@@ -924,10 +924,10 @@ table.dataTable {
 	display: none;
 	position: relative;
     left: 352px;
-    top: -368px; /* Initially hide the popup */
+    top: -368px; 
   }
   
-  /* Style for the input field inside the popup */
+  
   .popup input {
 	flex-grow: 1;
 	margin-right: 10px;
@@ -939,7 +939,7 @@ table.dataTable {
 	color: var(--black);
   }
   
-  /* Style for the "Add" button inside the popup */
+
   .popup button {
 	top: -2px;
     background: var(--blue);

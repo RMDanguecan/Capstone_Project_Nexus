@@ -1,8 +1,8 @@
 window.onload = function() {
     $(document).ready(function() {
-        // Fetch and display products using AJAX
+       
         $.ajax({
-            url: '../get_products.php', // Replace with your actual API endpoint
+            url: '../API/get_products.php', 
             dataType: 'json',
             success: function(data) {
                 if (data.success) {
@@ -10,8 +10,8 @@ window.onload = function() {
                     data.data.forEach(product => {
                         const productDiv = $('<div class="col-3"></div>');
 
-                        // Construct the full image URL without an additional 'uploads/' segment
-                        const fullImageUrl = `../${product.productImage}`; // Adjust this based on your folder structure
+                       
+                        const fullImageUrl = `../${product.productImage}`; 
 
                         productDiv.html(`
                             <img src="${fullImageUrl}" alt="${product.productName}">

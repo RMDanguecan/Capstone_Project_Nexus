@@ -10,10 +10,10 @@
     z-index: 9999;
     display: none;
     max-width: 440px;
-    height: 560px;
+    height: 635px;
 }
 
-/* Styling for form rows and columns */
+
 .form-row {
     margin-bottom: 15px;
     display: flex;
@@ -21,7 +21,7 @@
 }
 
 
-/* Styling for form inputs */
+
 .form-control {
     width: 220px;
     padding: 10px;
@@ -29,7 +29,7 @@
     border-radius: 5px;
 }
 
-/* Styling for buttons */
+
 .btn {
     background-color: #007bff;
     color: white;
@@ -39,7 +39,7 @@
     cursor: pointer;
 }
 
-/* Styling for close button */
+
 .closeUser {
     position: absolute;
     top: 10px;
@@ -60,4 +60,62 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+
+.form-actions1{
+
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+#combine_wrapper {
+    overflow-x:auto;
+    padding: 20px;
+}
+
+
+#updateUserFormPopup{
+    max-width: 440px;
+    height: 635px;
+}
+
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 110px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+    max-width: 440px;
+    height: 635px;
+}
+
+
+
+
+
+
+
+
+.btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }

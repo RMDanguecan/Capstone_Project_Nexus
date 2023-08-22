@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./CSS/style.css">
 	<link rel="stylesheet" href="./CSS/Userform.css">
 
-	<title>AdminHub</title>
+	<title>Panel</title>
 	
 </head>
 
@@ -118,7 +118,7 @@
 
 					<div id="addUserFormPopup" class="popup-form" style="display: none;">
 						<span class="closeUser" id="closeUserForm">&times;</span>
-						<form id="userForm" action="./API/adduser.php" method="POST" enctype="multipart/form-data">
+						<form id="userForm" method="POST">
 							<div class="form-table">
 								<div class="form-row">
 									<div class="form-column">
@@ -128,31 +128,66 @@
 									<div class="form-column">
 										<label for="category">Email:</label>
 										<input type="text" class="form-control" id="email" name="email" required>
-					
-					
 									</div>
 									<div class="form-column">
-										<label for="newPassword">Password:</label>
-										<input type="password" class="form-control" id="newPassword" name="newPassword" required>
+										<label for="password">Password:</label>
+										<input type="password" class="form-control" id="password" name="password" required>
 									</div>
 									<div class="form-column">
 										<label for="confirmPassword">Confirm Password:</label>
 										<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
 									</div>
-									<div class="form-actions">
+									<div class="form-column">
+										<label for="role">Role:</label>
+										<select class="form-control" id="role" name="role" required>
+											<option value="admin">Admin</option>
+											<option value="user">User</option>
+										</select>
+									</div>
+									<div class="form-actions1">
 										<input type="submit" value="Add User" class="btn btn-primary" name="add">
 									</div>
+								</div>
+							</div>
 						</form>
+					</div>
+					<div id="updateUserFormPopup" class="popup-container" style="display: none;">
+						<div class="popup-content">
+							<span class="closeUser" id="closeUserFormUpdate">&times;</span>
+							<form id="updateUserForm" method="POST">
+								<div class="form-row">
+									<label for="updateUserName">New Username:</label>
+									<input type="text" class="form-control" id="updateUserName" name="updateUserName" required>
+								</div>
+								<div class="form-row">
+									<label for="updateEmail">New Email:</label>
+									<input type="text" class="form-control" id="updateEmail" name="updateEmail" required>
+								</div>
+								<div class="form-row">
+									<label for="updatePassword">New Password:</label>
+									<input type="password" class="form-control" id="updatePassword" name="updatePassword">
+								</div>
+								<div class="form-row">
+									<label for="updateConfirmPassword">Confirm Password:</label>
+									<input type="password" class="form-control" id="updateConfirmPassword" name="updateConfirmPassword">
+								</div>
+								<div class="form-row">
+									<label for="updateRole">Role:</label>
+									<select class="form-control" id="updateRole" name="updateRole" required>
+										<option value="admin">Admin</option>
+										<option value="user">User</option>
+									</select>
+								</div>
+								<div class="form-row">
+									<input type="hidden" id="updateUserId" name="updateUserId" value="">
+									<input type="hidden" id="userType" name="userType" value="user">
+									<input type="submit" value="Update User" class="btn btn-primary" name="update">
+								</div>
+							</form>
+						</div>
 					</div>
                 </li>
 
-				<li>
-					<a href="#" id="addAdminBtn"><i class='bx bx-user-plus'></i></a>
-					<span class="text">
-						<h3>Add Admin</h3>
-						
-					</span>
-				</li>
 
 				
 				</ul>
@@ -160,22 +195,21 @@
 		</main>
 
 		<div id="usersTableContainer">
-            <table id="userstable" class="display" style="width: 100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Created at</th>
-                        <th>Updated at</th>
+			<table id="combine" class="display" style="width: 100%">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Created at</th>
+						<th>Updated at</th>
+						<th>Role</th>
 						<th>Actions</th> 
-                        
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            
-        </div>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 		<!-- MAIN -->
 
 		

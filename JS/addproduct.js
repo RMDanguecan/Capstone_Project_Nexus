@@ -228,7 +228,7 @@ function displayProducts(products) {
                     data: 'price',
                     title: 'Price',
                     render: function(data, type, row) {
-                        return '₱' + data; // Add the peso sign before the price value
+                        return '₱' + data; 
                     }
                 },
                 {
