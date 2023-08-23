@@ -5,9 +5,11 @@ const successMessage = document.getElementById('successMessage');
 
 
 
-function showAlert(alertId) {
-    const alertElement = document.getElementById(alertId);
-    alertElement.style.display = 'block';
+function showAlert(messageElementId) {
+    var messageElement = document.getElementById(messageElementId);
+    if (messageElement) {
+        messageElement.style.display = 'block'; // Show the alert element
+    }
 }
 
 function clearFieldsOnUnsuccessfulLogin() {
@@ -38,33 +40,31 @@ loginForm.addEventListener('submit', (e) => {
         return;
     }
 
-
-
+    console.log('Starting login process...');
     fetch('./API/login.php', {
-            method: 'POST',
-            body: formData,
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            if (data.success) {
-                showAlert('successMessage');
-                window.location.href = './dashboard.html';
-
+        method: 'POST',
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Data from server:', data);
+        if (data.success) {
+            console.log('Login successful.');
+            if (data.role === 'admin') {
+                window.location.href = './dashboard.html'; // Redirect to admin dashboard
+            } else if (data.role === 'user') {
+                window.location.href = './Mainpage/index.html'; // Redirect to user dashboard
             } else {
-                showAlert('invalidMessage');
-
-
+                console.log('Unknown role.');
             }
-            clearFieldsOnUnsuccessfulLogin();
-        })
-        .catch((error) => {
-            showAlert('An error occurred during login. Please try again.');
-
-        });
-
-
-
+        } else {
+            console.log('Login unsuccessful.');
+            // Rest of your code for handling unsuccessful login
+        }
+    })
+    .catch((error) => {
+        console.log('Error:', error);
+    });
 
 
     setTimeout(() => {

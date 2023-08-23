@@ -23,19 +23,26 @@
                 </div>
                 <div class="nav-links">
                     <a class="box" href="index.html">Home</a>
-                    <a class="box" href="#">Artworks</a>
+                    <a class="box" href="artworks.html">Artworks</a>
                     <a class="box" href="#">Artist</a>
                 </div>
                 <div class="nav-icons">
-                    <a href="" id="user-button">
-                        <img src="user.png" alt="User Icon">
-                    </a>
-
-                    <a href="#">
+                    <a href="#" id="cart-button">
                         <img src="Cart.png" alt="Cart Icon">
                     </a>
-
+                    
+                    <div class="dropdown" id="user-dropdown">
+                        <a href="#" id="user-button">
+                            <img src="user.png" alt="User Icon">
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#" class="menu-item">Profile</a>
+                            <a href="#" class="menu-item">Settings</a>
+                            <a href="#" class="menu-item logout">Logout</a> <!-- Added the 'logout' class here -->
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>

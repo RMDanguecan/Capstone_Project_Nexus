@@ -2,7 +2,6 @@
 
 require "./API/conn.php";
 
-
 $response = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,7 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productId = isset($_POST["id"]) ? $_POST["id"] : null;
     $productName = $_POST["productName"];
     $category = $_POST["category"];
+    $description = $_POST["description"]; // New field
     $price = $_POST["price"];
+    $quantity = $_POST["quantity"]; // New field
     $author = $_POST["author"];
 
   
@@ -44,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($productId !== null) {
        
-        $updateQuery = "UPDATE products SET productName = ?, category = ?, price = ?, author = ?";
-        $params = array($productName, $category, $price, $author);
+        $updateQuery = "UPDATE products SET productName = ?, category = ?, description = ?, price = ?, stock_quantity = ?, author = ?";
+        $params = array($productName, $category, $description, $price, $quantity, $author);
     
        
         if ($productImage !== null) {
             $updateQuery .= ", productImage = ?";
             $params[] = $productImage;
-        }
+        }   
     
       
         $updateQuery .= " WHERE id = ?";
@@ -70,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
        
-        $insertQuery = "INSERT INTO products (productName, category, price, author, productImage) VALUES (?, ?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO products (productName, category, description, price, stock_quantity, author, productImage) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("ssdss", $productName, $category, $price, $author, $productImage);
+        $stmt->bind_param("ssssiss", $productName, $category, $description, $price, $quantity, $author, $productImage);
     
         if ($stmt->execute()) {
            
@@ -85,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 
 header('Content-Type: application/json');
 echo json_encode($response);

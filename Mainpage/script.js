@@ -29,3 +29,40 @@ window.onload = function() {
         });
     });
 };
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutLink = document.querySelector('.logout');
+    logoutLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        logout();
+    });
+});
+
+function logout() {
+    $.ajax({
+        url: '../API/logout.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                sessionStorage.setItem('loggedOut', 'true');
+                window.location.replace('../index.html');
+            } else {
+                console.error('Logout failed.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+
+
+
+
+
+
+

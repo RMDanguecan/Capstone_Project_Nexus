@@ -126,50 +126,58 @@
 
 
 
-                    <div id="addProductForm" class="popup-form">    
-                        <span class="close" id="closeForm">&times;</span> 
-                        <form id="productForm" action="./API/add.php" method="POST" enctype="multipart/form-data">
-                            <div class="form-table">
-                                <div class="form-row">
-                                    <div class="form-column">
-                                        <label for="productName">Product Name:</label>
-                                        <input type="text" class="form-control" id="productName" name="productName" required>
-                                    </div>
-                                    <div class="form-column">
-                                        <label for="category">Category:</label>
-                                        <input type="text" class="form-control" id="category" name="category" required>
-                                    </div>
+                <div id="addProductForm" class="popup-form">    
+                    <span class="close" id="closeForm">&times;</span> 
+                    <form id="productForm" action="./API/add.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-table">
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <label for="productName">Product Name:</label>
+                                    <input type="text" class="form-control" id="productName" name="productName" required>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-column">
-                                        <label for="price">Price:</label>
-                                        <input type="text" id="price" name="price" placeholder="&#8369;0.00" required>
-                                        
-                                    </div>
-                                    <div class="form-column">
-                                        <label for="author">Artist:</label>
-                                        <input type="text" class="form-control" id="author" name="author" required>
-                                        <input type="hidden" id="id" name="id" value="">
-
-                                    </div>
+                                <div class="form-column">
+                                    <label for="category">Category:</label>
+                                    <input type="text" class="form-control" id="category" name="category" required>
                                 </div>
-                                <input type="file" id="productImage" name="productImage" accept="image/*" style="display: none;">
-                                <div class="form-row">
-                                    <div class="form-column">
-                                        <div class="form-row">
-                                            <div class="column">
-                                                <div id="selectedImageContainer"></div>
-                                            </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <label for="description">Description:</label>
+                                    <textarea class="form-control" id="description" name="description" required></textarea>
+                                </div>
+                                <div class="form-column">
+                                    <label for="price">Price:</label>
+                                    <input type="text" id="price" name="price" placeholder="&#8369;0.00" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity" required>
+                                </div>
+                                <div class="form-column">
+                                    <label for="author">Artist:</label>
+                                    <input type="text" class="form-control" id="author" name="author" required>
+                                    <input type="hidden" id="id" name="id" value="">
+                                </div>
+                            </div>
+                            <input type="file" id="productImage" name="productImage" accept="image/*" style="display: none;">
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="form-row">
+                                        <div class="column">
+                                            <div id="selectedImageContainer"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" id="addImageBtn" class="btn btn-primary">Add Image</button>
                             </div>
-                            <div class="form-actions">
-                                <input type="submit" value="Add Product" class="btn btn-primary" name="add">
-                            </div>
-                        </form>
-                    </div>
+                            <button type="button" id="addImageBtn" class="btn btn-primary">Add Image</button>
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" value="Add Product" class="btn btn-primary" name="add">
+                        </div>
+                    </form>
+                </div>
             </ul>
 
 
@@ -197,6 +205,8 @@
                         <th>Author</th>
                         <th>Price</th>
                         <th>Product Image</th>
+                        <th>Quantity</th>
+                        <th>Description</th>
                         <th>Actions</th> 
                     </tr>
                 </thead>

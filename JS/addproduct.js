@@ -1,3 +1,5 @@
+
+
 function showForm(isUpdating) {
     const addProductForm = document.getElementById('addProductForm');
     addProductForm.style.display = 'block';
@@ -104,51 +106,61 @@ window.onload = function() {
     });
 };
 
-// ADD IMAGEclosecloseForm
-document.getElementById('addImageBtn').addEventListener('click', () => {
-    document.getElementById('productImage').click();
-});
 
-document.getElementById('productImage').addEventListener('change', (event) => {
-    const reader = new FileReader();
-    const input = event.target;
+document.addEventListener('DOMContentLoaded', function() {
+   
+    document.getElementById('addImageBtn').addEventListener('click', () => {
+        console.log('Add Image button clicked');
+        document.getElementById('productImage').click();
+    });
 
-    if (input.files && input.files[0]) {
-        const selectedImage = input.files[0];
-        reader.onload = () => {
-            const imageContainer = document.getElementById('selectedImageContainer');
-            const image = new Image();
+   
+    document.getElementById('productImage').addEventListener('change', (event) => {
+        const reader = new FileReader();
+        const input = event.target;
 
-            image.src = reader.result;
-            image.setAttribute('id', 'selectedImage');
-            image.style.maxWidth = '150px';
-            imageContainer.innerHTML = '';
-            imageContainer.appendChild(image);
+        if (input.files && input.files[0]) {
+            const selectedImage = input.files[0];
+            reader.onload = () => {
+                const imageContainer = document.getElementById('selectedImageContainer');
+                const image = new Image();
 
+                image.src = reader.result;
+                image.setAttribute('id', 'selectedImage');
+                image.style.maxWidth = '150px';
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(image);
 
-            image.addEventListener('click', () => {
-                const modal = document.getElementById('imageModal');
-                const enlargedImage = document.getElementById('enlargedImage');
-                const formContainer = document.querySelector('.popup-form');
-                const closeEnlargedImageButton = document.getElementById('closeEnlargedImage');
+                // Show the modal when the image is clicked
+                image.addEventListener('click', () => {
+                    const modal = document.getElementById('imageModal');
+                    const enlargedImage = document.getElementById('enlargedImage');
+                    const closeEnlargedImageButton = document.getElementById('closeEnlargedImage');
 
-                modal.style.display = 'block';
-                enlargedImage.src = image.src;
-                formContainer.style.display = 'none';
+                    modal.style.display = 'block';
+                    enlargedImage.src = image.src;
 
+                    closeEnlargedImageButton.style.display = 'block';
+                });
+            };
 
-                closeEnlargedImageButton.style.display = 'block';
-            });
+            reader.readAsDataURL(selectedImage);
+        }
+    });
 
-
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            const addProductForm = document.getElementById('addProductForm');
-            addProductForm.style.display = 'block';
-        };
-
-        reader.readAsDataURL(selectedImage);
-    }
+    // Handle closing the modal
+ 
+    const closeEnlargedImageButton = document.getElementById('closeEnlargedImage');
+    
+    
+    closeEnlargedImageButton.addEventListener('click', () => {
+       
+        const modal = document.getElementById('imageModal');
+        const formContainer = document.querySelector('.popup-form');
+    
+        modal.style.display = 'none';
+        formContainer.style.display = 'block';
+    });
 });
 
 // ADD
@@ -208,13 +220,18 @@ function displayProducts(products) {
     if (!table) {
         table = $('#productTable').DataTable({
             data: products,
-            columns: [{
+            columns: [
+                {
                     data: 'id',
                     title: 'ID'
                 },
                 {
                     data: 'productName',
                     title: 'Product Name'
+                },
+                {
+                    data: 'description',
+                    title: 'Description'
                 },
                 {
                     data: 'category',
@@ -230,6 +247,10 @@ function displayProducts(products) {
                     render: function(data, type, row) {
                         return '₱' + data; 
                     }
+                },
+                {
+                    data: 'stock_quantity',
+                    title: 'Stock Quantity',
                 },
                 {
                     data: 'productImage',
@@ -249,7 +270,6 @@ function displayProducts(products) {
                     }
                 }
             ],
-
         });
     } else {
         table.clear().rows.add(products).draw();
@@ -266,6 +286,8 @@ function populateFormFields(productData) {
         $('#category').val('');
         $('#author').val('');
         $('#price').val('');
+        $('#stock_quantity').val(''); 
+        $('#description').val(''); 
         $('#selectedImageContainer').empty();
     } else {
         console.log('Populating form fields with data:', productData);
@@ -274,13 +296,12 @@ function populateFormFields(productData) {
         $('#category').val(productData.category);
         $('#author').val(productData.author);
         $('#price').val(productData.price);
-
+        $('#stock_quantity').val(productData.stock_quantity); 
+        $('#description').val(productData.description); 
 
         if (productData.productImage) {
-
             $('#selectedImageContainer').html(`<img src="${productData.productImage}" alt="Product Image" height="50">`);
         } else {
-
             const reader = new FileReader();
             reader.onload = () => {
                 const imageContainer = document.getElementById('selectedImageContainer');
@@ -291,17 +312,11 @@ function populateFormFields(productData) {
                 image.style.maxWidth = '150px';
                 imageContainer.innerHTML = '';
                 imageContainer.appendChild(image);
-
-
             };
 
             reader.readAsDataURL(productData.productImageBinary);
         }
-
-
     }
-
-
 }
 
 
