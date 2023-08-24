@@ -30,6 +30,8 @@ function clearFields() {
     const authorInput = document.getElementById('author');
     const productImageInput = document.getElementById('productImage');
     const selectedImageContainer = document.getElementById('selectedImageContainer');
+    const quantityInput = document.getElementById('quantity');
+    const descriptionText = document.getElementById('description');
 
     productNameInput.value = '';
     categoryInput.value = '';
@@ -37,6 +39,8 @@ function clearFields() {
     authorInput.value = '';
     productImageInput.value = '';
     selectedImageContainer.innerHTML = '';
+    quantityInput.value = '';
+    descriptionText.value = '';
 }
 
 function hideForm() {

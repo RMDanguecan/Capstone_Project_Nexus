@@ -10,10 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
     $role_name = $_POST["updateRole"]; 
     $userId = $_POST["updateUserId"];
 
-    
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    
     $roleQuery = "SELECT id FROM roles WHERE role_name = ?";
     $stmt = $conn->prepare($roleQuery);
     $stmt->bind_param("s", $role_name);
@@ -22,56 +20,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
     $stmt->fetch();
     $stmt->close();
 
-    
-    if (isset($_POST["userType"])) {
-        $userType = $_POST["userType"];
+    $updateQuery = "UPDATE admin_users SET username = ?, email = ?, password = ?, role_id = ? WHERE id = ?";
+    $stmt = $conn->prepare($updateQuery);
+    $stmt->bind_param("ssssi", $username, $email, $hashedPassword, $role_id, $userId);
 
-       
-        $updateQuery = "UPDATE admin_users SET username = ?, email = ?, password = ?, role_id = ? WHERE id = ?";
-
-        if (!empty($updateQuery)) {
-            $stmt = $conn->prepare($updateQuery);
-            $stmt->bind_param("sssii", $username, $email, $hashedPassword, $role_id, $userId);
-
-            if ($stmt->execute()) {
-                
-                $insertUserQuery = "INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)";
-                $stmt = $conn->prepare($insertUserQuery);
-                $stmt->bind_param("sssi", $username, $email, $hashedPassword, $role_id);
-                $stmt->execute();
-                $stmt->close();
-
-                
-                $deleteQuery = "DELETE FROM admin_users WHERE id = ?";
-                $stmt = $conn->prepare($deleteQuery);
-                $stmt->bind_param("i", $userId);
-                $stmt->execute();
-                $stmt->close();
-
-               
-                $response['success'] = true;
-                $response['message'] = "User updated successfully!";
-            } else {
-               
-                $response['success'] = false;
-                $response['message'] = "Error updating user. Please try again.";
-                $response['error'] = $stmt->error; 
-            }
+    if ($stmt->execute()) {
+      
+        $insertUserQuery = "INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($insertUserQuery);
+        $stmt->bind_param("sssi", $username, $email, $hashedPassword, $role_id);
+        if ($stmt->execute()) {
+            $response['success'] = true;
+            $response['message'] = "User updated successfully and transferred to users table!";
         } else {
-            
             $response['success'] = false;
-            $response['message'] = "Empty update query. Please check userType value.";
+            $response['message'] = "Error transferring user to users table. Please try again.";
+            $response['error'] = $stmt->error; 
         }
+        $stmt->close();
     } else {
-       
         $response['success'] = false;
-        $response['message'] = "User type not specified.";
+        $response['message'] = "Error updating user in admin_users table. Please try again.";
+        $response['error'] = $stmt->error; 
     }
 } else {
     $response['success'] = false;
     $response['message'] = "Invalid request!";
 }
-
 
 header('Content-Type: application/json');
 echo json_encode($response);

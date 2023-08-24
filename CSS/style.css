@@ -987,3 +987,17 @@ table.dataTable {
 
 
   
+
+#ordersTable_wrapper{
+	padding:20px;
+}
+
+#ordersTable thead th {
+    background-color: #343a40;
+    color: #ffffff; 
+}
+
+#productTable thead th {
+    background-color: #343a40; 
+    color: #ffffff; 
+}

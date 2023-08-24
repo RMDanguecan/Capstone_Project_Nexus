@@ -10,9 +10,8 @@
 
 </head>
 
-<body>
-
-
+<body>  
+    
     <div class="header">
         <div class="container">
             <div class="navbar">
@@ -27,10 +26,10 @@
                     <a class="box" href="#">Artist</a>
                 </div>
                 <div class="nav-icons">
-                    <a href="#" id="cart-button">
+                    <a href="#" id="cart-button" data-product-id="" class="cart-icon">
                         <img src="Cart.png" alt="Cart Icon">
+                        <span id="cartItemCount">0</span>
                     </a>
-                    
                     <div class="dropdown" id="user-dropdown">
                         <a href="#" id="user-button">
                             <img src="user.png" alt="User Icon">
@@ -38,7 +37,7 @@
                         <div class="dropdown-content">
                             <a href="#" class="menu-item">Profile</a>
                             <a href="#" class="menu-item">Settings</a>
-                            <a href="#" class="menu-item logout">Logout</a> <!-- Added the 'logout' class here -->
+                            <a href="#" class="menu-item logout">Logout</a> 
                         </div>
                     </div>
                 </div>
@@ -58,17 +57,89 @@
             </div>
         </div>
     </div>
-
-    <div class="categories">
-        <div class="small-container">
-            <h2 class="title">Recently Added</h2>
-            <br>
-            <div class="row" id="recentlyAddedProducts">
-                
-
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalProductName"></h2>
+            <p id="modalProductDescription"></p>
+            <p id="modalProductPrice"></p>
+            <img id="modalProductImage" class="modal-image" src="" alt="Product Image">
+            <div class="quantity-container">
+                <div class="quantity-input">
+                    <button class="quantity-btn minus">-</button>
+                    <input id="modalProductQuantity" type="number" min="1" value="1">
+                    <button class="quantity-btn plus">+</button>
+                </div>
+                <button id="addToCartButton">Add to Cart</button>
             </div>
         </div>
     </div>
+
+    <div id="successMessage" class="success-message">Product added to cart!</div>
+
+    
+    <div id="cartModal" class="modal">
+        <div class="modal-contentprod">
+            <span class="cartClose">&times;</span>
+            <h2>Your Cart</h2>
+            <table id="cartTable">
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cartItemList">
+               
+                </tbody>
+            </table>
+            <p id="totalAmount">Total Amount: &#8369;0.00</p>
+            <p id="totalItemCount">Total Items: 0</p>
+
+            <div class="cart-footer">
+                <button id="checkoutButton" class="checkout-btn">Proceed to Checkout</button>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="checkoutModal" class="modal checkout-modal">
+        <form id="shippingForm" action="../API/checkout.php" method="post">
+            <!-- Add name attributes to input fields -->
+            <div class="modal-content-shipping">
+                <span class="modal-close-shipping">&times;</span>
+                <h2>Shipping Information</h2>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="full_name" required>
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" id="contactNumber" name="contact_number" required>
+                <label for="shippingAddress">Shipping Address:</label>
+                <textarea id="shippingAddress" name="shipping_address" rows="4" required></textarea>
+                <p>Total Items: <span id="modalTotalItems">0</span></p>
+                <input type="hidden" id="modalTotalAmountInput" name="modalTotalAmount">
+                <p>Total Amount: <span id="modalTotalAmount">&#8369;<span>0.00</span></span></p>
+                <input type="hidden" id="modalTotalItemsInput" name="modalTotalItems">
+                <button type="submit" id="confirmShipping">Confirm Shipping</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="small-container">
+        <div class="outer-row">
+            <h2 class="title">All Products</h2>
+     
+        </div>
+
+        <div class="row" id="artworks">
+           
+        </div>
+    </div>
+
+    
 
     <div class="small-container">
         <h2 class="title">Featured Arts</h2>
@@ -166,6 +237,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="script.js"></script>
+    
 </body>
 
 </html>

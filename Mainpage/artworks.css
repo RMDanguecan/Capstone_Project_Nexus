@@ -499,3 +499,177 @@ h4{
   width: 50px;
   text-align: center;
 }
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+.modal-contentprod {
+  left: 10%;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: fixed;
+  top: -11%;
+}
+
+.cartClose {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+#cartTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cartTable th,
+#cartTable td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#cartTable th {
+  background-color: #f2f2f2;
+}
+
+#cartTable img {
+  max-width: 60px;
+}
+
+#cartTable .cart-item-name {
+  font-weight: bold;
+}
+
+#cartTable .cart-item-price,
+#cartTable .cart-item-quantity,
+#cartTable .cart-item-total {
+  font-size: 16px;
+  color: #333;
+}
+
+#cartTable .cart-item-price {
+  font-size: 14px;
+  color: #777;
+}
+
+
+.success-message {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 1), rgba(0, 212, 255, 0.1));
+  color: white;
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+
+
+
+.checkout-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the modal */
+.checkout-modal {
+  display: none;
+  background-color: white;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 424px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  top: 20%;
+  left: 38%;
+  width: 106%;
+  height: 63%;
+  z-index: 1000;
+}
+
+/* Style for the modal close button */
+.checkout-modal .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* Style for input fields and textarea */
+.checkout-modal .modal-content-shipping input,
+.checkout-modal .modal-content-shipping textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the Confirm Shipping button */
+.checkout-modal #confirmShipping {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style for the Confirm Shipping button on hover */
+.checkout-modal #confirmShipping:hover {
+    background-color: #0056b3;
+}
+
+.modal-close-shipping{
+  bottom: 14px;
+  position: relative;
+  left: 99%;
+  font-size: 25px;
+  cursor: pointer;
+}

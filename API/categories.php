@@ -2,9 +2,9 @@
 
 require "conn.php";
 
-$category = $_GET['category']; // Get selected category from the AJAX request
+$category = $_GET['category']; 
 
-// Modify the query to fetch products based on the selected category
+
 if ($category === 'all') {
     $sql = "SELECT * FROM products";
 } else {
@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-// Return the response as JSON
+
 header('Content-Type: application/json');
 echo json_encode($response);
 
